@@ -20,13 +20,14 @@ namespace EmptyFSM
             MachineContainer<T>.RemoveMachine(owner);
         }
 
-        public static void ChangeState<T, S>(this T owner)
+        public static void ChangeState<T, S>(this T owner, Action<S> setupCallback = null)
             where T : IStateMachineOwner 
             where S : BaseState<T>, new()
         {
             var machine = MachineContainer<T>.GetMachine(owner);
             var state = Activator.CreateInstance<S>();
             state.Owner = owner;
+            setupCallback?.Invoke(state);
 
             machine.ChangeState(state);
         }
@@ -68,6 +69,7 @@ namespace EmptyFSM
                 if(MachineTable.TryGetValue(owner.GetHashCode(), out var machine))
                 {
                     MachineProcessor.Instance.OnUpdate -= machine.Update;
+                    machine.Dispose();
                 }
 
                 MachineTable.Remove(owner.GetHashCode());

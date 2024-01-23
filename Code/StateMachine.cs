@@ -25,6 +25,7 @@ namespace EmptyFSM.Code
 
         public void Dispose()
         {
+            CurrentState?.Exit();
             CurrentState?.Dispose();
             GC.SuppressFinalize(this);
         }
