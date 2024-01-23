@@ -1,0 +1,22 @@
+using UnityEngine;
+using EmptyFSM;
+
+#ROOTNAMESPACEBEGIN#	
+	public sealed class #SCRIPTNAME# : BaseState<StateMachineOwner> //SMO - use IStatemachineowner 
+	{
+		public override void Enter()
+		{
+			#NOTRIM#
+		}
+
+		public override void Update()
+		{
+			#NOTRIM#
+		}
+
+		public override void Exit()
+		{
+			#NOTRIM#
+		}
+	}
+#ROOTNAMESPACEEND#
