@@ -7,9 +7,9 @@ namespace EmptyFSM
     {
         public T Owner { get; set; }
 
-        public abstract void Enter();
-        public abstract void Exit();
-        public abstract void Update();
+        public virtual void Enter() { }
+        public virtual void Exit() { }
+        public virtual void Update() { }
 
         public virtual void OnDispose() { }
 
